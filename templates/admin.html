@@ -8,6 +8,36 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   </head>
   <body style ="background-color:#a9def9 ;">
+    <div>
+      <nav
+        class="navbar navbar-light bg-dark justify-content-between text-light px-5 fixed-top"
+        style="height: 110px"
+      >
+        <a class="navbar-brand text-light" style="font-size:36px;" href="/">Event Management</a>
+        <form class="form-inline">
+          <a
+            href="/registration"
+            class="btn btn-outline-primary my-2 my-sm-0 bg-primary text-white"
+            style="margin-right:30px;position:relative"
+            type="submit"
+            >Participant Registration</a
+          >
+          <a
+            href="/eventinfo"
+            class=" btn btn-outline-danger my-2 my-sm-0 bg-danger text-white "
+            style="margin-right:30px;position:relative"
+            type="submit"
+            >Events Info</a
+          >
+          <a
+            href="/admin"
+            class="btn btn-outline-primary my-2 my-sm-0 bg-secondary text-white"
+            type="submit"
+            >Admin Login</a
+          >
+        </form>
+      </nav>
+    </div>
     <div class ="text-center mt-5">
     <form style= "max-width :450px; margin :auto;" method="post" >
         <img class=" img-rounded mt-4 mb-4" src="../static/images/university-general.jpg" height = "250" width ="400">
