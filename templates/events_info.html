@@ -1,136 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Information</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
-      integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
-      crossorigin="anonymous"
-    ></script>
-  </head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+          crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #1a1a1d;
+            color: #ffffff;
+            padding-top: 70px;
+        }
 
-  <body style="background-color: #DEFCF9">
-    <div>
-      <nav
-        class="navbar navbar-light bg-dark justify-content-between text-light px-5 fixed-top"
-        style="height: 110px"
-      >
-        <a class="navbar-brand text-light" style="font-size:36px;" href="/">Event Management</a>
-        <form class="form-inline">
-          <a
-            href="/registration"
-            class="btn btn-outline-primary my-2 my-sm-0 bg-primary text-white"
-            style="margin-right:30px;position:relative"
-            type="submit"
-            >Participant Registration</a
-          >
-          <a
-            href="/eventinfo"
-            class=" btn btn-outline-danger my-2 my-sm-0 bg-danger text-white "
-            style="margin-right:30px;position:relative"
-            type="submit"
-            >Events Info</a
-          >
-          <a
-            href="/admin"
-            class="btn btn-outline-primary my-2 my-sm-0 bg-secondary text-white"
-            type="submit"
-            >Admin Login</a
-          >
-        </form>
-      </nav>
-    </div>
-    <div
-      style="
-        background-color: #080d3a;;
-        height: 7rem;
-        align-items: center;
-        display: flex;
-        justify-content: center;
-      "
-      class="text-dark"
+        .navbar {
+            background-color: #0d6efd;
+        }
+
+        .navbar-brand {
+            font-size: 28px;
+        }
+
+        .event-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .event-item {
+            background-color: #2c303e;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-title {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: #ffc107;
+        }
+
+        .event-info {
+            color: #ced4da;
+        }
+
+        .event-info b {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+  <div>
+    <nav
+      class="navbar navbar-light bg-dark justify-content-between text-light px-5 fixed-top"
+      style="height: 110px"
     >
-      <h1 style="text-align: center; color:#FFD662">
-        About Events &#128526;
-      </h1>
-    </div>
-    <br />
-    <br />
+      <a class="navbar-brand text-light" style="font-size:36px;" href="/">Event Management</a>
+      <form class="form-inline">
+        <a
+          href="/registration"
+          class="btn btn-outline-primary my-2 my-sm-0 bg-primary text-white"
+          style="margin-right:30px;position:relative"
+          type="submit"
+          >Participant Registration</a
+        >
+        <a
+          href="/eventinfo"
+          class=" btn btn-outline-danger my-2 my-sm-0 bg-danger text-white "
+          style="margin-right:30px;position:relative"
+          type="submit"
+          >Events Info</a
+        >
+        <a
+          href="/admin"
+          class="btn btn-outline-primary my-2 my-sm-0 bg-secondary text-white"
+          type="submit"
+          >Admin Login</a
+        >
+      </form>
+    </nav>
+  </div>
+
+<div class="event-container" style="margin-top: 100px;">
     {% for event in events %}
-    <div
-      style="
-        align-items: center;
-        display: flex;
-        justify-content: center;
-        border-radius: 30%;
-        color: #D81159;
-        border-color: #182848;
-        border-width: 5px;
-      "
-    >
-      <div class="card mb-3" style="width: 60rem;background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);">
-        <div
-          style="align-items: center; display: flex; justify-content: center;color: #FFD662;"
-          class="h1 card-header bg-transparent"
-        >
-          {{event[3]}}
+    <div class="event-item" style="text-align: center;font-size: 125%;">
+        <div class="event-title" style="font-size: 200%;text-align: center;">{{ event[1] }}</div>
+        <div class="event-info">
+            <b>{{ event[1] }}</b> is a {{ event[7] }} event of Rebeca.
+            <br>
+            <b>Venue:</b> {{ event[8] }}
+            <br>
+            <b>Date:</b> {{ event[6] }}
+            <br>
+            <b>Registration fee:</b> &#8377;{{ event[2] }}
+            <br>
+            <b>Current Participants:</b> {{ event[9] }}
+            <br>
+            <b>Max Participants:</b> {{ event[3] }}
         </div>
-        <div class="card-body">
-          <h5
-            class="card-title"
-            style="align-items: center; display: flex; justify-content: center;color:#EEA47f"
-          >
-            <b style="color: #FFD662;" ">{{event[3]}}</b>&nbsp;is a flagship {{event[7]}} event of College
-            of engineering Pune
-          </h5>
-        </div>
-        <div
-          class="card-footer bg-transparent"
-          style="align-items: center; display: flex; justify-content: center;color: #EEA47f;"
-        >
-        <b style="color: #FFD662;" ">Venue:</b>&nbsp; {{event[8]}}
-        </div>
-        <div
-        class="card-footer bg-transparent"
-        style="align-items: center; display: flex; justify-content: center;color: #EEA47f;"
-      >
-      <b style="color: #FFD662;" ">Date:</b>&nbsp; {{event[6]}}
-      </div>
-        <div
-          class="card-footer bg-transparent"
-          style="align-items: center; display: flex; justify-content: center;color: #EEA47f;"
-        >
-        <b style="color: #FFD662;" ">Registration fee:</b>&nbsp; &#8377;{{event[4]}}
-        </div>
-        <div
-          class="card-footer bg-transparent"
-          style="align-items: center; display: flex; justify-content: center;color: #EEA47f;"
-        >
-        <b style="color: #FFD662;" ">Current Participants:</b>&nbsp; {{event[9]}}
-        </div>
-        <div
-          class="card-footer bg-transparent"
-          style="align-items: center; display: flex; justify-content: center;color: #EEA47f;"
-        >
-        <b style="color: #FFD662;" ">Max Participants:</b>&nbsp; {{event[5]}}
-        </div>
-      </div>
     </div>
-    <br />
     {% endfor %}
-  </body>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
 </html>

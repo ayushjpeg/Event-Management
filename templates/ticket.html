@@ -26,8 +26,34 @@
         overflow-x: hidden;
       }
     </style>
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          background-color: #f0f0f0;
+      }
+      .ticket {
+          width: 300px;
+          margin: 0 auto;
+          background-color: #fff;
+          border-radius: 10px;
+          padding: 20px;
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+      .title {
+          text-align: center;
+          color: #333;
+          font-size: 24px;
+          margin-bottom: 20px;
+      }
+      .ticket-id {
+          text-align: center;
+          color: #007bff;
+          font-size: 36px;
+      }
+  </style>
   </head>
   <body class="bg-light">
+    <h1 style="font-family:poppins;text-align: center;color: black;margin-top:150px;">Ticket Generated</h1>
     <div>
       <nav
         class="navbar navbar-light bg-dark justify-content-between text-light px-5 fixed-top"
@@ -58,9 +84,12 @@
         </form>
       </nav>
     </div>
-    <div style="margin-left: 300px">
-      Ticket Generated
+    <div style="text-align: center;margin-top: 20px;">
+      <img src="../static/images/ticket.jpg" alt="" style="width: 30%" />
     </div>
-    
+    <div class="ticket">
+      <div class="ticket-id">Ticket ID: {{ ticketid }}</div>
+  </div>
+  
   </body>
 </html>

@@ -3,6 +3,8 @@ import datetime
 from flask import Flask, request, jsonify, render_template, redirect, url_for
 from random import randint
 
+ticketid = 0
+
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -12,7 +14,9 @@ def renderLoginPage():
 
 @app.route('/ticket', methods=['GET', 'POST'])
 def ticekt_generation():
-    return render_template('ticket.html')
+    global ticketid
+    ticketid += 1
+    return render_template('ticket.html',ticketid = ticketid)
 
 @app.route('/registration', methods=['GET','POST'])
 def Registration_func():
@@ -35,8 +39,8 @@ def Registration_func():
 
         if runQuery("SELECT COUNT(*) FROM participants WHERE event_id=?", (Event,))[0][0] >= runQuery("SELECT participants FROM events WHERE event_id=?", (Event,))[0][0]:
             return render_template('loginfail.html', errors=["Participants count fulfilled Already!"])
-
-        runQuery("INSERT INTO participants(event_id, fullname, email, mobile, college) VALUES (?, ?, ?, ?, 'COEP')", (Event, Name, Email, Mobile))
+            
+        runQuery("INSERT INTO participants(event_id, fullname, email, mobile, college) VALUES (?, ?, ?, ?, 'IIEST')", (Event, Name, Email, Mobile))
 
         return render_template('registration.html', events=events, errors=["Successfully Registered!"])
     return render_template('registration.html', events=events)
@@ -89,6 +93,7 @@ def getEvents():
 @app.route('/eventinfo')
 def rendereventinfo():
     events = runQuery("SELECT *,(SELECT COUNT(*) FROM participants AS P WHERE P.event_id = E.event_id ) AS count FROM events AS E LEFT JOIN event_type USING(type_id) LEFT JOIN venue USING(venue_id);")
+    print(events)
     return render_template('events_info.html', events=events)
 
 @app.route('/participants', methods=['GET', 'POST'])
