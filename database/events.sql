@@ -59,6 +59,6 @@ CREATE TABLE `admin`(
 );
 
 INSERT INTO `admin` VALUES
-('Admin1','password1'),
-('Admin2','password2');
+('Admin','Admin123');
+
 

@@ -87,6 +87,14 @@ def getEvents():
         except:
             EventId = request.form["EventId"]
             runQuery("DELETE FROM events WHERE event_id=?", (EventId,))
+            
+        eventTypes = runQuery("SELECT *,(SELECT COUNT(*) FROM participants AS P WHERE T.type_id IN (SELECT type_id FROM events AS E WHERE E.event_id = P.event_id ) ) AS COUNT FROM event_type AS T;")
+
+        events = runQuery("SELECT event_id, event_title, (SELECT COUNT(*) FROM participants AS P WHERE P.event_id = E.event_id ) AS count FROM events AS E;")
+
+        types = runQuery("SELECT * FROM event_type;")
+
+        venue = runQuery("SELECT * FROM venue")
 
     return render_template('events.html', events=events, eventTypes=eventTypes, types=types, venues=venue)
 
